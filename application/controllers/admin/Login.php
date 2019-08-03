@@ -14,7 +14,7 @@ class Login extends CI_Controller
 		// Load session library
 		$this->load->library('session');
 		// Load database
-		$this->load->model('backend/login_database');
+		$this->load->model('backend/Login_Database');
 		$this->load->helper('security');
 	}
 	// login page
@@ -39,11 +39,11 @@ class Login extends CI_Controller
 				'username' => $this->input->post('username'),
 				'password' => md5($this->input->post('password'))
 			);
-			$result = $this->login_database->login($data);
+			$result = $this->Login_Database->login($data);
 			if ($result == TRUE) {
 
 				$username = $this->input->post('username');
-				$result = $this->login_database->read_user_information($username);
+				$result = $this->Login_Database->read_user_information($username);
 
 				if ($result) {
 					$session_data = array(

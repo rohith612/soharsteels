@@ -20,6 +20,16 @@
             <!-- sections -->
                 <?php echo $contents[0]->page_content ; ?>
             <!-- end section -->
+			
+			<span style="position: fixed;
+
+    left: 20px;
+
+    bottom: 5px;
+
+    z-index: 9; color:#999"> Copyright © <?php echo date("Y");?>. All rights reserved by Sohar Steel Group | Designed by Tech Galaxy LLC.
+
+</span>
 		</section>
 	</div>
 </div>

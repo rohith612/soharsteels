@@ -201,7 +201,7 @@
         </div>
         <div class="white-overlay"></div>
         <div class="grey-overlay"></div>
-
+		<?php if($page_menu=='home'){ ?> 
         <video autoplay loop class="home-video">
             <source src="<?php echo base_url(); ?>template/frontend/video/video1.mp4" type="video/mp4">
             <?php if ($this->uri->segment(1) == "") { ?>
@@ -210,6 +210,7 @@
                 <source src="<?php echo base_url(); ?>template/frontend/video/demo.webm" type="video/webm">
             <?php } ?>
         </video>
+		<?php } ?>
         <div class="help-menu">
             <div id="jquery-accordion-menu" class="jquery-accordion-menu">
                 <ul id="demo-list">
