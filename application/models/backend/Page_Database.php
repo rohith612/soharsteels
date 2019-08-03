@@ -46,8 +46,23 @@ class Page_Database extends CI_Model
         }
     }
     // Read data from database to show data in admin page
-    public function update_page_information($page_id, $data_array)
+    public function update_page_information($page_id, $data_array, $file_uploaded)
     {
+        if ($file_uploaded) {
+            $this->db->where('page_id', $page_id);
+            $this->db->from('pages');
+            $query = $this->db->get();
+            if ($query->num_rows() > 0) {
+                $data_file_name_exist = $query->result();
+                $old_file_name = $data_file_name_exist[0]->page_banner;
+                if ($old_file_name != '') {
+                    $file_pointer = './uploads/banners/' . $old_file_name;
+                    if (file_exists($file_pointer)) {
+                        unlink($file_pointer);
+                    }
+                }
+            }
+        }
         $this->db->where('page_id', $page_id);
         $this->db->update('pages', $data_array);
         if ($this->db->affected_rows() > 0) {
