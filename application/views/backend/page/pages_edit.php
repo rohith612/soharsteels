@@ -74,6 +74,20 @@
                             <input type="text" class="form-control" name="page_name" id="exampleInputEmail1" placeholder="Enter Name" value="<?php echo $page_details[0]->page_name; ?>">
                             <?php echo form_error('page_name'); ?>
                         </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Page Banner *</label>
+                            <input type="file" name="page_banner" id="page_banner">
+                            <?php echo form_error('page_banner'); ?>
+                        </div>
+                        <?php if ($page_details[0]->page_banner != "") { ?>
+                            <hr>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Preview</label>
+                                <img width="300" src="<?php echo base_url(); ?>uploads/banners/<?php echo $page_details[0]->page_banner; ?>" name="page_banner_pre">
+                            </div>
+                        <?php } ?>
+                        <hr>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Page Content *</label>
                             <textarea name="page_content" id="editor"><?php echo $page_details[0]->page_content; ?></textarea>
@@ -116,6 +130,27 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script>
- new FroalaEditor('#editor')
+    new FroalaEditor('#editor')
+    var _URL = window.URL || window.webkitURL;
+    $("#page_banner").change(function(e) {
+        var file, img;
+        if ((file = this.files[0])) {
+            img = new Image();
+            var max_width = "1280";
+            var max_height = "401";
+            img.src = _URL.createObjectURL(file);
+            img.onload = function() {
+                if (this.width == max_width && this.height == max_height) {
+                    
+                } else {
+                    alert("invalid image resolution use " + max_width + 'X' + max_height);
+                    $('#page_banner').val(null)
+                }
+
+            };
+
+        }
+    })
 </script>
