@@ -147,7 +147,7 @@
 </head>
 
 <body>
-	<?php if($page_menu=='home'){ ?> 
+	<?php //if($page_menu=='home'){ ?> 
     <div class="preloader-wrap">
         <div class="preloader-wrap_i">
             <div class="preloader animated">
@@ -158,7 +158,7 @@
         </div>
     </div>
 	<?php
-	}
+	//}
 	?>
     <div class="menu">
         <div class="menu_i">
@@ -205,7 +205,7 @@
         </div>
         <div class="white-overlay"></div>
         <div class="grey-overlay"></div>
-		<?php if($page_menu=='home'){ ?> 
+		<?php //if($page_menu=='home'){ ?> 
         <video autoplay loop class="home-video">
             <source src="<?php echo base_url(); ?>template/frontend/video/video1.mp4" type="video/mp4">
             <?php if ($this->uri->segment(1) == "") { ?>
@@ -214,7 +214,7 @@
                 <source src="<?php echo base_url(); ?>template/frontend/video/demo.webm" type="video/webm">
             <?php } ?>
         </video>
-		<?php } ?>
+		<?php //} ?>
         <div class="help-menu">
             <div id="jquery-accordion-menu" class="jquery-accordion-menu">
                 <ul id="demo-list">

@@ -50,6 +50,7 @@
 		data_track_clickback: false
 	}
 </script>
+
 <script src="<?php echo base_url(); ?>template/frontend/js/start.js"></script>
 
 <script type="text/javascript">
