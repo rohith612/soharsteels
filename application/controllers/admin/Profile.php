@@ -16,7 +16,7 @@ class Profile extends CI_Controller
 		// Load database
 		$this->load->database();
 		$this->load->helper('security');
-		$this->load->model('backend/profile_database');
+		$this->load->model('backend/Profile_Database');
 	}
 	// profile page view
 	public function index()
@@ -25,7 +25,7 @@ class Profile extends CI_Controller
 			$this->load->view('backend/login_page');
 		} else {
 			$id = $this->session->userdata['logged_in']['id'];
-			$data['profile'] = $this->profile_database->read_user_information($id);
+			$data['profile'] = $this->Profile_Database->read_user_information($id);
 			$this->load->view('backend/theme/header');
 			$this->load->view('backend/theme/sidebar');
 			$this->load->view('backend/profile', $data);
@@ -43,7 +43,7 @@ class Profile extends CI_Controller
 		$id = $this->session->userdata['logged_in']['id'];
 		if ($this->form_validation->run() == FALSE) {
 
-			$data['profile'] = $this->profile_database->read_user_information($id);
+			$data['profile'] = $this->Profile_Database->read_user_information($id);
 			$this->load->view('backend/theme/header');
 			$this->load->view('backend/theme/sidebar');
 			$this->load->view('backend/profile', $data);
@@ -55,7 +55,7 @@ class Profile extends CI_Controller
 			);
 			if ($this->input->post('password') != '')
 				$data['password'] = md5($this->input->post('password'));
-			$update_profile = $this->profile_database->update_user_information($data, $id);
+			$update_profile = $this->Profile_Database->update_user_information($data, $id);
 			if ($update_profile) {
 				$this->session->set_flashdata('success', 'Profile Updated successfully');
 			} else {

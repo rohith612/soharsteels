@@ -16,7 +16,7 @@ class Page extends CI_Controller
 		// Load database
 		$this->load->database();
 		$this->load->helper('security');
-		$this->load->model('backend/page_database');
+		$this->load->model('backend/Page_Database');
 		$this->load->library('encrypt');
 	}
 	// show page index
@@ -26,7 +26,7 @@ class Page extends CI_Controller
 			$this->load->view('backend/login_page');
 		} else {
 			$id = $this->session->userdata['logged_in']['id'];
-			$data['page_list'] = $this->page_database->read_page_information();
+			$data['page_list'] = $this->Page_Database->read_page_information();
 			$this->load->view('backend/theme/header');
 			$this->load->view('backend/theme/sidebar');
 			$this->load->view('backend/page/pages_index', $data);
@@ -39,7 +39,7 @@ class Page extends CI_Controller
 		if (!isset($this->session->userdata['logged_in'])) {
 			$this->load->view('backend/login_page');
 		} else {
-			$data['page_list'] = $this->page_database->read_page_information();
+			$data['page_list'] = $this->Page_Database->read_page_information();
 			$this->load->view('backend/theme/header');
 			$this->load->view('backend/theme/sidebar');
 			$this->load->view('backend/page/page_new', $data);
@@ -57,7 +57,7 @@ class Page extends CI_Controller
 		$this->form_validation->set_rules('page_content', 'Content', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('page_parent', 'Parent', 'trim|required|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
-			$data['page_list'] = $this->page_database->read_page_information();
+			$data['page_list'] = $this->Page_Database->read_page_information();
 			$this->load->view('backend/theme/header');
 			$this->load->view('backend/theme/sidebar');
 			$this->load->view('backend/page/page_new', $data);
@@ -72,7 +72,7 @@ class Page extends CI_Controller
 				'page_parent' => $this->input->post('page_parent'),
 				'page_status' => 1
 			);
-			$update_page = $this->page_database->insert_page_information($insert_data);
+			$update_page = $this->Page_Database->insert_page_information($insert_data);
 			if ($update_page) {
 				$this->session->set_flashdata('success', 'Page Inserted successfully');
 			} else {
@@ -88,12 +88,12 @@ class Page extends CI_Controller
 			$this->load->view('backend/login_page');
 		} else {
 			$page_id  = $this->input->get('key');
-			$data['page_details'] = $this->page_database->get_page_information($page_id);
-			$data['page_subs'] = $this->page_database->get_subpage_information($page_id);
+			$data['page_details'] = $this->Page_Database->get_page_information($page_id);
+			$data['page_subs'] = $this->Page_Database->get_subpage_information($page_id);
 			if (!$data['page_details']) {
 				redirect('admin/page');
 			}
-			$data['page_list'] = $this->page_database->read_page_information();
+			$data['page_list'] = $this->Page_Database->read_page_information();
 			$this->load->view('backend/theme/header');
 			$this->load->view('backend/theme/sidebar');
 			$this->load->view('backend/page/pages_edit', $data);
@@ -111,11 +111,11 @@ class Page extends CI_Controller
 		$this->form_validation->set_rules('page_content', 'Content', 'trim|required|xss_clean');
 		$page_id =  $this->input->post('page_id');
 		if ($this->form_validation->run() == FALSE) {
-			$data['page_details'] = $this->page_database->get_page_information($page_id);
+			$data['page_details'] = $this->Page_Database->get_page_information($page_id);
 			if (!$data['page_details']) {
 				redirect('admin/page');
 			}
-			$data['page_list'] = $this->page_database->read_page_information();
+			$data['page_list'] = $this->Page_Database->read_page_information();
 			$this->load->view('backend/theme/header');
 			$this->load->view('backend/theme/sidebar');
 			$this->load->view('backend/page/pages_edit', $data);
@@ -128,7 +128,7 @@ class Page extends CI_Controller
 				'page_meta_description' => $this->input->post('page_meta_description'),
 				'page_meta_key_word' => $this->input->post('page_meta_key_word'),
 			);
-			$update_page = $this->page_database->update_page_information($page_id, $update_data);
+			$update_page = $this->Page_Database->update_page_information($page_id, $update_data);
 			// set config for file upload
 			$config['upload_path']          = './uploads/';
 			$config['allowed_types']        = 'gif|jpg|png';
@@ -152,7 +152,7 @@ class Page extends CI_Controller
 						$data = $this->upload->data();
 						$file_name = $data['file_name'];
 					}
-					$this->page_database->update_subpage_information($sub_title[$i], $sub_content[$i], $sub_id[$i] , $file_name);
+					$this->Page_Database->update_subpage_information($sub_title[$i], $sub_content[$i], $sub_id[$i] , $file_name);
 					$file_count++;
 				}
 			}
@@ -168,7 +168,7 @@ class Page extends CI_Controller
 	public function delete_page()
 	{
 		$page_id  = $this->input->get('key');
-		$delete_page = $this->page_database->delete_page_information($page_id);
+		$delete_page = $this->Page_Database->delete_page_information($page_id);
 		if ($delete_page) {
 			$this->session->set_flashdata('success', 'Page deleted successfully');
 		} else {
