@@ -23,11 +23,7 @@
     <link href="<?php echo base_url(); ?>template/frontend/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <script src="<?php echo base_url(); ?>template/frontend/js/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>template/frontend/js/jquery-accordion-menu.js" type="text/javascript"></script>
-    <style>
-        .fr-wrapper>div:first-child {
-            display: none;
-        }
-    </style>
+
     <script type="text/javascript">
         jQuery(document).ready(function() {
             jQuery("#jquery-accordion-menu").jqueryAccordionMenu();

@@ -26,5 +26,8 @@
     $('.sidebar-menu').tree()
   })
 </script>
+<script>
+	$("[data-f-id=pbf]").hide();
+</script>
 </body>
 </html>

@@ -74,6 +74,7 @@
                             <input type="text" class="form-control" name="page_name" id="exampleInputEmail1" placeholder="Enter Name" value="<?php echo $page_details[0]->page_name; ?>">
                             <?php echo form_error('page_name'); ?>
                         </div>
+                        <?php if($page_details[0]->page_id != 1){?>
                         <hr>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Page Banner *</label>
@@ -88,6 +89,7 @@
                             </div>
                         <?php } ?>
                         <hr>
+                        <?php } ?>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Page Content *</label>
                             <textarea name="page_content" id="editor"><?php echo $page_details[0]->page_content; ?></textarea>
