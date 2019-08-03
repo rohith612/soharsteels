@@ -13,6 +13,7 @@ class Page extends CI_Controller
 		$this->load->library('form_validation');
 		// Load session library
 		$this->load->library('session');
+		$this->load->helper('file');
 		// Load database
 		$this->load->database();
 		$this->load->helper('security');
@@ -46,6 +47,24 @@ class Page extends CI_Controller
 			$this->load->view('backend/theme/footer');
 		}
 	}
+	/*
+     * file value and type check during validation
+     */
+	public function file_check($str)
+	{
+		$allowed_mime_type_arr = array( 'image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png');
+		$mime = get_mime_by_extension($_FILES['page_banner']['name']);
+		if (isset($_FILES['page_banner']['name']) && $_FILES['page_banner']['name'] != "") {
+			if (in_array($mime, $allowed_mime_type_arr)) {
+				return true;
+			} else {
+				$this->form_validation->set_message('file_check', 'Please select only gif/jpg/png file.');
+				return false;
+			}
+		} else {
+			return true;
+		}
+	}
 	// add page data
 	public function create_page()
 	{
@@ -56,6 +75,7 @@ class Page extends CI_Controller
 		$this->form_validation->set_rules('page_meta_key_word', 'Key word', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('page_content', 'Content', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('page_parent', 'Parent', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('page_banner', 'Page Banner', 'trim|required|xss_clean|callback_file_check');
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_list'] = $this->Page_Database->read_page_information();
 			$this->load->view('backend/theme/header');
@@ -109,6 +129,7 @@ class Page extends CI_Controller
 		$this->form_validation->set_rules('page_meta_description', 'Meta Description', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('page_meta_key_word', 'Key word', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('page_content', 'Content', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('page_banner', 'Page Banner', 'trim|xss_clean|callback_file_check');
 		$page_id =  $this->input->post('page_id');
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_details'] = $this->Page_Database->get_page_information($page_id);
@@ -128,7 +149,18 @@ class Page extends CI_Controller
 				'page_meta_description' => $this->input->post('page_meta_description'),
 				'page_meta_key_word' => $this->input->post('page_meta_key_word'),
 			);
-			$update_page = $this->Page_Database->update_page_information($page_id, $update_data);
+			$file_uploaded = 0;
+			// set config for file upload
+			$config_main['upload_path']          = './uploads/banners/';
+			$config_main['allowed_types']        = 'gif|jpg|png';
+			$config_main['max_size']             = 10000;
+			$this->load->library('upload', $config_main);
+			if ($this->upload->do_upload('page_banner')) {
+				$file_uploaded = 1;
+				$data_main = $this->upload->data();
+				$update_data['page_banner'] = $data_main['file_name'];
+			}
+			$update_page = $this->Page_Database->update_page_information($page_id, $update_data,$file_uploaded);
 			// set config for file upload
 			$config['upload_path']          = './uploads/';
 			$config['allowed_types']        = 'gif|jpg|png';
@@ -136,7 +168,6 @@ class Page extends CI_Controller
 			// $config['max_width']            = 1024;
 			// $config['max_height']           = 768;
 			$this->load->library('upload', $config);
-
 
 			$file_count = 1;
 			$result = 1;
@@ -146,13 +177,13 @@ class Page extends CI_Controller
 			// $countfiles = count($_FILES['sub_file']['name']);
 			if (!empty($sub_title) && !empty($sub_content)  && !empty($sub_id)) {
 				for ($i = 0; $i < sizeof($sub_id); $i++) {
-					if (!$this->upload->do_upload('sub_file_'.$sub_id[$i])) {
+					if (!$this->upload->do_upload('sub_file_' . $sub_id[$i])) {
 						$file_name = '';
 					} else {
 						$data = $this->upload->data();
 						$file_name = $data['file_name'];
 					}
-					$this->Page_Database->update_subpage_information($sub_title[$i], $sub_content[$i], $sub_id[$i] , $file_name);
+					$this->Page_Database->update_subpage_information($sub_title[$i], $sub_content[$i], $sub_id[$i], $file_name);
 					$file_count++;
 				}
 			}

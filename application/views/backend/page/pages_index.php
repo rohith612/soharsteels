@@ -68,12 +68,13 @@
                                                 <td><?php echo $row->page_meta_title; ?></td>
                                                 <td>
                                                     <a href="<?php echo base_url(); ?>admin/page/edit_page?key=<?php echo $row->page_id; ?>" class="btn btn-link">Edit</a>
+                                                    <!--
+                                                            <form method="POST" action="<?php echo base_url(); ?>admin/page/delete_page?key=<?php echo $row->page_id; ?>" accept-charset="UTF-8" style="display:inline">
 
-                                                    <form method="POST" action="<?php echo base_url(); ?>admin/page/delete_page?key=<?php echo $row->page_id; ?>" accept-charset="UTF-8" style="display:inline">
+                                                                <button type="submit" class="btn btn-link" title="Delete Page" onclick="return confirm('Are you sure?')">Delete</button>
 
-                                                        <button type="submit" class="btn btn-link" title="Delete Page" onclick="return confirm('Are you sure?')">Delete</button>
-
-                                                    </form>
+                                                            </form>
+                                                -->
                                                 </td>
                                             </tr>
                                         <?php } ?>

@@ -62,6 +62,11 @@
                             <?php echo form_error('page_name'); ?>
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Page Banner *</label>
+                            <input type="file" name="page_banner" id="page_banner">
+                            <?php echo form_error('page_banner'); ?>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Page Content *</label>
                             <textarea name="page_content" id="editor"></textarea>
                             <?php echo form_error('page_content'); ?>
@@ -97,10 +102,27 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
+    new FroalaEditor('#editor')
+    var _URL = window.URL || window.webkitURL;
+    $("#page_banner").change(function(e) {
+        var file, img;
+        if ((file = this.files[0])) {
+            img = new Image();
+            var max_width = "1280";
+            var max_height = "401";
+            img.src = _URL.createObjectURL(file);
+            img.onload = function() {
+                if (this.width == max_width && this.height == max_height) {
+
+                } else {
+                    alert("invalid image resolution use " + max_width + 'X' + max_height);
+                    $('#page_banner').val(null)
+                }
+
+            };
+
+        }
+    })
 </script>
