@@ -147,6 +147,7 @@
 </head>
 
 <body>
+	<?php if($page_menu=='home'){ ?> 
     <div class="preloader-wrap">
         <div class="preloader-wrap_i">
             <div class="preloader animated">
@@ -156,6 +157,9 @@
             </div>
         </div>
     </div>
+	<?php
+	}
+	?>
     <div class="menu">
         <div class="menu_i">
             <div id="jquery-accordion-menu" class="jquery-accordion-menu">
@@ -176,7 +180,7 @@
             </div>
         </div>
     </div>
-   
+    </div>
     <div class="btn-menu">
         <div class="btn-menu_i">
             <div class="btn-menu_ii">
