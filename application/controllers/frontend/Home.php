@@ -49,10 +49,11 @@ class Home extends CI_Controller
 	 */
 	public function comapny_profile($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile'; 
+		$data['page_menu'] = 'comapny_profile'; 
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['sub_contents'] = $this->Cms_Database->read_subpage_information($function_para);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/company_profile' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -61,10 +62,10 @@ class Home extends CI_Controller
 	 */
 	public function policy_env($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/policy_env' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -74,10 +75,10 @@ class Home extends CI_Controller
 	 */
 	public function rolling_mills($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/rolling_mills' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -87,10 +88,10 @@ class Home extends CI_Controller
 	 */
 	public function industries_llc($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/industries_llc' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -100,10 +101,10 @@ class Home extends CI_Controller
 	 */
 	public function steel_llc($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/steel_llc' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -113,10 +114,10 @@ class Home extends CI_Controller
 	 */
 	public function reinforcing_bars($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/reinforcing_bars' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -125,10 +126,10 @@ class Home extends CI_Controller
 	 */
 	public function steel_mesh($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/steel_mesh' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -137,10 +138,10 @@ class Home extends CI_Controller
 	 */
 	public function steel_billets($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/steel_billets' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -150,10 +151,10 @@ class Home extends CI_Controller
 	 */
 	public function epoxy_coating($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/epoxy_coating' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -163,10 +164,10 @@ class Home extends CI_Controller
 	 */
 	public function quality_standards($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/quality_standards' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -175,10 +176,10 @@ class Home extends CI_Controller
 	 */
 	public function quality_certificates($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/quality_certificates' , $data);
 		$this->load->view('frontend/theme/footer');
 	}
@@ -187,10 +188,10 @@ class Home extends CI_Controller
 	 */
 	public function contact_us($function_para)
 	{
-		$data_menu['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'comapny_profile';
 		$data['contents'] = $this->Cms_Database->read_page_information($function_para);
-		$data_menu['menus'] = $this->Cms_Database->read_menu_information();
-		$this->load->view('frontend/theme/header', $data_menu);
+		$data['menus'] = $this->Cms_Database->read_menu_information();
+		$this->load->view('frontend/theme/header', $data);
 		$this->load->view('frontend/contact_us' , $data);
 		$this->load->view('frontend/theme/footer');
 	}

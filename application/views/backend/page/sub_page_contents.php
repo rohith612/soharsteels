@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Image Cover</label>
-                        <img width=150 src="<?php echo base_url() ?>/uploads/<?php echo $row->sub_content_image; ?>">
+                        <img width=150 src="<?php echo base_url() ?>/uploads/banners/<?php echo $row->sub_content_image; ?>">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Image Upload</label>

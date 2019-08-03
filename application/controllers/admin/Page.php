@@ -160,11 +160,12 @@ class Page extends CI_Controller
 				$data_main = $this->upload->data();
 				$update_data['page_banner'] = $data_main['file_name'];
 			}
+			
 			$update_page = $this->Page_Database->update_page_information($page_id, $update_data,$file_uploaded);
 			// set config for file upload
-			$config['upload_path']          = './uploads/';
+			$config['upload_path']          = './uploads/banners/';
 			$config['allowed_types']        = 'gif|jpg|png';
-			$config['max_size']             = 100;
+			$config['max_size']             = 10000;
 			// $config['max_width']            = 1024;
 			// $config['max_height']           = 768;
 			$this->load->library('upload', $config);
@@ -177,7 +178,7 @@ class Page extends CI_Controller
 			// $countfiles = count($_FILES['sub_file']['name']);
 			if (!empty($sub_title) && !empty($sub_content)  && !empty($sub_id)) {
 				for ($i = 0; $i < sizeof($sub_id); $i++) {
-					if (!$this->upload->do_upload('sub_file_' . $sub_id[$i])) {
+					if (!$this->upload->do_upload('sub_file_'.$sub_id[$i])) {
 						$file_name = '';
 					} else {
 						$data = $this->upload->data();

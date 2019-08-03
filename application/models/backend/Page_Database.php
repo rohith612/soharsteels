@@ -88,7 +88,7 @@ class Page_Database extends CI_Model
                 $data_file_name_exist = $query->result();
                 $old_file_name = $data_file_name_exist[0]->sub_content_image;
                 if ($old_file_name != '') {
-                    $file_pointer = './uploads/' . $old_file_name;
+                    $file_pointer = './uploads/banners/' . $old_file_name;
                     if (file_exists($file_pointer)) {
                         unlink($file_pointer);
                     }
