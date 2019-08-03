@@ -5,6 +5,7 @@
 <head lang="en">
     <title><?php echo $contents[0]->page_meta_title; ?></title>
     <base>
+    <link rel="icon" href="<?php echo base_url(); ?>template/frontend/img/fav.png" type="image/png" sizes="16x16">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php echo $contents[0]->page_meta_description; ?>" />
@@ -167,7 +168,7 @@
             <div id="jquery-accordion-menu" class="jquery-accordion-menu">
                 <ul id="demo-list">
                     <?php foreach ($menus as $row) { ?>
-                        <li <?php if ($this->uri->segment(1) == $row['menu_url']) { ?> class="active" <?php } ?>><a href="<?php echo $row['menu_url']; ?>"><?php echo $row['menu_name']; ?></a>
+                        <li <?php if ($this->uri->segment(1) == $row['menu_url']) { ?> class="active" <?php } ?>><a href="<?php if($row['menu_url'] == 'home') { echo base_url(); }else{ echo $row['menu_url']; }?>"><?php echo $row['menu_name']; ?></a>
                             <?php if (sizeof($row['menu_childs']) > 0) { ?>
                                 <ul class="submenu">
                                     <?php foreach ($row['menu_childs'] as $child) { ?>
@@ -223,7 +224,21 @@
             <div id="jquery-accordion-menu" class="jquery-accordion-menu">
                 <ul id="demo-list">
                     <?php foreach ($menus as $row) { ?>
-                        <li><a href="<?php echo base_url() . $row['menu_url']; ?>"><?php echo $row['menu_name']; ?></a></li>
+                        <li><a href="<?php 
+                            if($row['menu_url'] == 'home') 
+                            { 
+                                echo base_url(); 
+                            }elseif($row['menu_url'] == 'about-us'){
+                                echo base_url().'company-profile';
+                            }elseif($row['menu_url'] == 'group-of-companies'){
+                                echo base_url().'sharq-sohar-steel-rolling-mills';
+                            }elseif($row['menu_url'] == 'products'){
+                                echo base_url().'reinforcing-bars';
+                            }
+                            else{
+                                 echo $row['menu_url']; 
+                                 }
+                                 ?>"><?php echo $row['menu_name']; ?></a></li>
                     <?php } ?>
                 </ul>
             </div>

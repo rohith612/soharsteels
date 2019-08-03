@@ -32,7 +32,7 @@
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                Sucess , Page details updated
+                Success , Page details updated
             </div>
         <?php } ?>
 
@@ -74,21 +74,21 @@
                             <input type="text" class="form-control" name="page_name" id="exampleInputEmail1" placeholder="Enter Name" value="<?php echo $page_details[0]->page_name; ?>">
                             <?php echo form_error('page_name'); ?>
                         </div>
-                        <?php if($page_details[0]->page_id != 1){?>
-                        <hr>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Page Banner *</label>
-                            <input type="file" name="page_banner" id="page_banner">
-                            <?php echo form_error('page_banner'); ?>
-                        </div>
-                        <?php if ($page_details[0]->page_banner != "") { ?>
+                        <?php if ($page_details[0]->page_id != 1) { ?>
                             <hr>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Preview</label>
-                                <img width="300" src="<?php echo base_url(); ?>uploads/banners/<?php echo $page_details[0]->page_banner; ?>" name="page_banner_pre">
+                                <label for="exampleInputEmail1">Page Banner *</label>
+                                <input type="file" name="page_banner" id="page_banner">
+                                <?php echo form_error('page_banner'); ?>
                             </div>
-                        <?php } ?>
-                        <hr>
+                            <?php if ($page_details[0]->page_banner != "") { ?>
+                                <hr>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Preview</label>
+                                    <img width="300" src="<?php echo base_url(); ?>uploads/banners/<?php echo $page_details[0]->page_banner; ?>" name="page_banner_pre">
+                                </div>
+                            <?php } ?>
+                            <hr>
                         <?php } ?>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Page Content *</label>
@@ -145,7 +145,7 @@
             img.src = _URL.createObjectURL(file);
             img.onload = function() {
                 if (this.width == max_width && this.height == max_height) {
-                    
+
                 } else {
                     alert("invalid image resolution use " + max_width + 'X' + max_height);
                     $('#page_banner').val(null)

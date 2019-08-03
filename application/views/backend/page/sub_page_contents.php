@@ -13,7 +13,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Content</label>
-                        <textarea id="subCntent" class="editor" name="sub_content[]"><?php echo $row->sub_contents; ?></textarea>
+                        <textarea id="subCntent" class="form-control editor" name="sub_content[]" rows="5"><?php echo $row->sub_contents; ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Image Cover</label>
@@ -33,8 +33,8 @@
 </table>
 
 <script>
-    var allEditors = document.querySelectorAll('.editor');
-    for (var i = 0; i < allEditors.length; ++i) {
-        new FroalaEditor(allEditors[i])
-    }
+    // var allEditors = document.querySelectorAll('.editor');
+    // for (var i = 0; i < allEditors.length; ++i) {
+    //     new FroalaEditor(allEditors[i])
+    // }
 </script>

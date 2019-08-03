@@ -13,7 +13,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$data['page_menu'] = 'comapny_profile';
+		$data['page_menu'] = 'home';
 		$data['contents'] = $this->Cms_Database->read_page_information(1);
 		$data['menus'] = $this->Cms_Database->read_menu_information();
 		$this->load->view('frontend/theme/header', $data);

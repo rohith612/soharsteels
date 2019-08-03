@@ -83,9 +83,10 @@ class Page extends CI_Controller
 			$this->load->view('backend/page/page_new', $data);
 			$this->load->view('backend/theme/footer');
 		} else {
+			$str ='<p data-f-id="pbf" xss=removed>Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>';
 			$insert_data = array(
 				'page_name' => $this->input->post('page_name'),
-				'page_content' => $this->input->post('page_content'),
+				'page_content' => str_replace($str,'',$this->input->post('page_content')),
 				'page_meta_title' => $this->input->post('page_meta_title'),
 				'page_meta_description' => $this->input->post('page_meta_description'),
 				'page_meta_key_word' => $this->input->post('page_meta_key_word'),
