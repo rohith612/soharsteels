@@ -40,9 +40,9 @@
 
                 <div class="column">
                     <div class="row">
-                        <!-- <div class="col-md-12">
+                        <div class="col-md-12">
                             <a href="<?php echo base_url(); ?>admin/page/new_page" class="btn btn-primary">Add New</a>
-                        </div> -->
+                        </div>
                     </div>
                     <br>
                     <div class="row">

@@ -3,13 +3,13 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head lang="en">
-    <title><?php echo $contents[0]->page_meta_title; ?></title>
+    <title><?php if(!empty($contents)) {echo $contents[0]->page_meta_title; }else{ echo '';}?></title>
     <base>
     <link rel="icon" href="<?php echo base_url(); ?>template/frontend/img/fav.png" type="image/png" sizes="16x16">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php echo $contents[0]->page_meta_description; ?>" />
-    <meta name="keywords" content="<?php echo $contents[0]->page_meta_key_word; ?>" />
+    <meta name="description" content="<?php if(!empty($contents)) { echo $contents[0]->page_meta_description; }else{ echo '';} ; ?>" />
+    <meta name="keywords" content="<?php if(!empty($contents)) { echo $contents[0]->page_meta_key_word;}else{ echo '';} ?>" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="<?php echo base_url(); ?>" />
     <meta name="twitter:description" content="" />
@@ -168,7 +168,7 @@
             <div id="jquery-accordion-menu" class="jquery-accordion-menu">
                 <ul id="demo-list">
                     <?php foreach ($menus as $row) { ?>
-                        <li <?php if ($this->uri->segment(1) == $row['menu_url']) { ?> class="active" <?php } ?>><a href="<?php if($row['menu_url'] == 'home') { echo base_url(); }else{ echo $row['menu_url']; }?>"><?php echo $row['menu_name']; ?></a>
+                        <li <?php if ($this->uri->segment(1) == $row['menu_url']) { ?> class="active" <?php } ?>><a href="<?php if($row['menu_url'] == 'home') { echo base_url(); }else{ echo $row['menu_url']; }?>"><i class="<?php echo $row['menu_icons']; ?>"></i> <?php echo $row['menu_name']; ?></a>
                             <?php if (sizeof($row['menu_childs']) > 0) { ?>
                                 <ul class="submenu">
                                     <?php foreach ($row['menu_childs'] as $child) { ?>
@@ -238,7 +238,7 @@
                             else{
                                  echo $row['menu_url']; 
                                  }
-                                 ?>"><?php echo $row['menu_name']; ?></a></li>
+                                 ?>"><i class="<?php echo $row['menu_icons']; ?>"></i><?php echo $row['menu_name']; ?></a></li>
                     <?php } ?>
                 </ul>
             </div>

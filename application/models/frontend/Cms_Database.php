@@ -26,6 +26,7 @@ class Cms_Database extends CI_Model
         $this->db->from('pages');
         $this->db->join('template', 'template.page_id = pages.page_id');
         $this->db->where('pages.page_parent', 0);
+        $this->db->where('pages.page_status', 1);
         $this->db->order_by('pages.page_order', 'ASC');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -53,6 +54,8 @@ class Cms_Database extends CI_Model
         $this->db->from('pages');
         $this->db->join('template', 'template.page_id = pages.page_id');
         $this->db->where('pages.page_parent', $parent_id);
+        $this->db->where('pages.page_status', 1);
+        $this->db->order_by('pages.page_order', 'ASC');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             $result =  $query->result();

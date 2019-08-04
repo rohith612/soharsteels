@@ -75,7 +75,7 @@ class Page extends CI_Controller
 		$this->form_validation->set_rules('page_meta_key_word', 'Key word', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('page_content', 'Content', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('page_parent', 'Parent', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('page_banner', 'Page Banner', 'trim|required|xss_clean|callback_file_check');
+		// $this->form_validation->set_rules('page_banner', 'Page Banner', 'trim|required|xss_clean|callback_file_check');
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_list'] = $this->Page_Database->read_page_information();
 			$this->load->view('backend/theme/header');
@@ -110,7 +110,7 @@ class Page extends CI_Controller
 		} else {
 			$page_id  = $this->input->get('key');
 			$data['page_details'] = $this->Page_Database->get_page_information($page_id);
-			$data['page_subs'] = $this->Page_Database->get_subpage_information($page_id);
+			$data['page_subs'] = array();//$this->Page_Database->get_subpage_information($page_id);
 			if (!$data['page_details']) {
 				redirect('admin/page');
 			}
@@ -164,32 +164,32 @@ class Page extends CI_Controller
 			
 			$update_page = $this->Page_Database->update_page_information($page_id, $update_data,$file_uploaded);
 			// set config for file upload
-			$config['upload_path']          = './uploads/banners/';
-			$config['allowed_types']        = 'gif|jpg|png';
-			$config['max_size']             = 10000;
-			// $config['max_width']            = 1024;
-			// $config['max_height']           = 768;
-			$this->load->library('upload', $config);
+			// $config['upload_path']          = './uploads/banners/';
+			// $config['allowed_types']        = 'gif|jpg|png';
+			// $config['max_size']             = 10000;
+			// // $config['max_width']            = 1024;
+			// // $config['max_height']           = 768;
+			// $this->load->library('upload', $config);
 
-			$file_count = 1;
-			$result = 1;
-			$sub_title = $this->input->post('sub_title');
-			$sub_content = $this->input->post('sub_content');
-			$sub_id = $this->input->post('sub_id');
-			// $countfiles = count($_FILES['sub_file']['name']);
-			if (!empty($sub_title) && !empty($sub_content)  && !empty($sub_id)) {
-				for ($i = 0; $i < sizeof($sub_id); $i++) {
-					if (!$this->upload->do_upload('sub_file_'.$sub_id[$i])) {
-						$file_name = '';
-					} else {
-						$data = $this->upload->data();
-						$file_name = $data['file_name'];
-					}
-					$this->Page_Database->update_subpage_information($sub_title[$i], $sub_content[$i], $sub_id[$i], $file_name);
-					$file_count++;
-				}
-			}
-			if ($update_page || $result) {
+			// $file_count = 1;
+			// $result = 1;
+			// $sub_title = $this->input->post('sub_title');
+			// $sub_content = $this->input->post('sub_content');
+			// $sub_id = $this->input->post('sub_id');
+			// // $countfiles = count($_FILES['sub_file']['name']);
+			// if (!empty($sub_title) && !empty($sub_content)  && !empty($sub_id)) {
+			// 	for ($i = 0; $i < sizeof($sub_id); $i++) {
+			// 		if (!$this->upload->do_upload('sub_file_'.$sub_id[$i])) {
+			// 			$file_name = '';
+			// 		} else {
+			// 			$data = $this->upload->data();
+			// 			$file_name = $data['file_name'];
+			// 		}
+			// 		$this->Page_Database->update_subpage_information($sub_title[$i], $sub_content[$i], $sub_id[$i], $file_name);
+			// 		$file_count++;
+			// 	}
+			// }
+			if ($update_page) {
 				$this->session->set_flashdata('success', 'Page Updated successfully');
 			} else {
 				$this->session->set_flashdata('error', "Sorry Can't update page");

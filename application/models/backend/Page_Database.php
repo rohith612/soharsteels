@@ -139,7 +139,7 @@ class Page_Database extends CI_Model
         $array = array(
             "page_id" => $insert_id,
             "slug_url" => $slug_url,
-            "temp_function" => ""
+            "temp_function" => "default_template"
         );
         $this->db->insert('template', $array);
         $insert_id = $this->db->insert_id();
